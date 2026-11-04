@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-configuration',
@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard-configuration.html',
   styleUrl: './dashboard-configuration.scss',
 })
-export class DashboardConfiguration {}
+export class DashboardConfiguration {
+
+  // ngOnInit(){
+  //   debugger;
+  // }
+}
