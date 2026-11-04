@@ -6,6 +6,8 @@ export class Tab {
     public compArgs: any; 
     public active!: boolean;
     public component: Type<any>; // screen
+    public width?: string;
+    public height?: string;
 
     constructor(component: Type<any>, title: string, compArgs: any) {
         this.component = component;
