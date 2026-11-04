@@ -19,8 +19,8 @@ export class TabContent implements OnChanges {
             this.viewContainerRef.clear(); // removes existing tab component data
 
             const componentRef =
-                this.viewContainerRef.createComponent<any>(this.tab.component);
-                console.log('viewContainer triggered')
+                this.viewContainerRef.createComponent<any>(this.tab.component);  // this.tab.component - the component class
+                console.log('viewContainer triggered',this.tab.component);
 
         }
     }

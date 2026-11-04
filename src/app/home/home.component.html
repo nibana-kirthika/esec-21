@@ -44,7 +44,7 @@
           </div>
         }
 
-        <!-- all tabs stay alive (hidden when inactive) so each keeps its own state -->
+    
         @for (tab of tabService.tabs(); track tab.tabId) {
           <div [hidden]="tab.tabId !== tabService.activeTabId()">
             <app-tab-content [tab]="tab"></app-tab-content>

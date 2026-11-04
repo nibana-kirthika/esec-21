@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Tab } from '../tab.model';
 import { TabContent } from '../tab.content';
-import { TabService } from '../tab.service';
-import { ReportPageComponent } from './report-page.component';
+import { TabService } from '../services/tab.service';
+// import { ReportPageComponent } from './report-page.component';
 import { LoginService } from '../services/login.service';
 import { UserMenu } from '../models';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { resolveTabComponent } from '../services/tab.registry';
 
 @Component({
   selector: 'app-home',
@@ -30,13 +31,25 @@ export class HomeComponent {
       return item.mainMenuName === menu.mainMenuName && item.subMenuName === menu.subMenuName;
     });
 
+    console.log('report click');
+
     if (allowedMenu) {
       this.selectedMenu.set(allowedMenu);
+      const component = resolveTabComponent(allowedMenu.mainMenuName, allowedMenu.subMenuName); // get main:dash, sub:config
+      if (!component) {
+        this.notice.set(allowedMenu.subMenuName + ' is not available in this application yet.');
+        return;
+      }
       this.notice.set('');
       // every click adds a new tab; duplicates are independent component instances
       this.tabService.addTab(
-        new Tab(ReportPageComponent, allowedMenu.mainMenuName + ' / ' + allowedMenu.subMenuName, { ...allowedMenu })
+        new Tab(
+          component,
+          allowedMenu.mainMenuName + ' / ' + allowedMenu.subMenuName,
+          { ...allowedMenu }
+        )
       );
+
       console.log('add tab clicked')
     }
   }
@@ -48,6 +61,7 @@ export class HomeComponent {
 
   closeTab(tabId: number): void {
     this.tabService.removeTabById(tabId);
+    console.log('close tab clicked')
   }
 
   toggleSidebar(): void {
