@@ -46,7 +46,7 @@
 
     
         @for (tab of tabService.tabs(); track tab.tabId) {
-          <div [hidden]="tab.tabId !== tabService.activeTabId()">
+          <div class="tab-panel" [hidden]="tab.tabId !== tabService.activeTabId()">
             <app-tab-content [tab]="tab"></app-tab-content>
           </div>
         }
