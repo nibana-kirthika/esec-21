@@ -22,7 +22,7 @@ export class TabContent implements OnChanges {
                 this.viewContainerRef.createComponent<any>(this.tab.component);
                 console.log('viewContainer triggered')
 
-                componentRef.instance.tabFullData = this.tab;
+                // componentRef.instance.tabFullData = this.tab;
         }
     }
 }
