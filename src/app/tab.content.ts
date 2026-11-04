@@ -15,11 +15,12 @@ export class TabContent implements OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
 
         if (changes['tab'] && this.tab) {
-
+            
             this.viewContainerRef.clear(); // removes existing tab component data
 
             const componentRef =
                 this.viewContainerRef.createComponent<any>(this.tab.component);
+                console.log('viewContainer triggered')
 
                 componentRef.instance.tabFullData = this.tab;
         }
