@@ -30,6 +30,8 @@
               }
             ],
             "styles": [
+              "node_modules/ag-grid-community/styles/ag-grid.css",
+              "node_modules/ag-grid-community/styles/ag-theme-balham.css",
               "src/styles.scss"
             ]
           },

@@ -16,6 +16,10 @@
     "@angular/core": "^21.2.0",
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
+    "ag-charts-enterprise": "9.3.2",
+    "ag-grid-angular": "31.3.4",
+    "ag-grid-community": "31.3.4",
+    "ag-grid-enterprise": "31.3.4",
     "crypto-js": "^4.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
