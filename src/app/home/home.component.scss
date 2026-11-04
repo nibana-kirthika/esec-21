@@ -94,6 +94,8 @@ dd {
   flex: 1;
   min-height: 0;
   overflow: auto;
+  // cancel the content padding so the screen touches the tab bar, sidebar, scrollbar and status bar
+  margin: 0 (-$spacing-6) (-$spacing-6);
 }
 
 .tab-bar {
@@ -102,11 +104,12 @@ dd {
   align-items: flex-end;
   gap: 0;
   // cancel the content padding so the tabs start flush at the top
-  margin: (-$spacing-6) (-$spacing-6) 16px;
+  margin: (-$spacing-6) (-$spacing-6) 0;
   padding: 0;
   border-bottom: 1px solid $border-color;
   background: $white;
   overflow-x: auto;
+  overflow-y: hidden; // no vertical scrollbar on the tab bar
   scrollbar-width: thin;
 }
 
