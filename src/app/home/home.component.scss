@@ -88,24 +88,52 @@ dd {
 
 .tab-bar {
   display: flex;
-  gap: 4px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid $border-light;
+  align-items: flex-end;
+  gap: 0;
+  // cancel the content padding so the tabs start flush at the top
+  margin: (-$spacing-6) (-$spacing-6) 16px;
+  padding: 0;
+  border-bottom: 1px solid $border-color;
+  background: $white;
   overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .tab {
+  position: relative;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-  border: 1px solid $border-light;
-  border-bottom: 0;
-  border-radius: $border-radius-md $border-radius-md 0 0;
-  background: $white;
+  max-width: 260px;
+  margin-bottom: -1px;
+  border: 0;
+  border-right: 1px solid $border-color;
+  border-radius: 0;
+  background: $gray-100;
+  color: $gray-500;
   white-space: nowrap;
+  transition: background $transition-fast, color $transition-fast;
+
+  &:hover {
+    background: $gray-200;
+    color: $gray-800;
+  }
 
   &.active {
-    background: $content-bg;
+    background: $white;
+    color: $primary-dark;
     font-weight: 600;
+
+    // accent line on top of the active tab
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $primary;
+    }
   }
 
   button {
@@ -117,11 +145,64 @@ dd {
   }
 
   .tab-label {
-    padding: 8px 4px 8px 12px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 8px 4px 15px 14px;
+  }
+
+  .tab-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // module name: tiny pill in the bottom-right corner of the tab
+  .tab-module {
+    position: absolute;
+    right: 8px;
+    bottom: 3px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: $gray-200;
+    color: $gray-500;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  &.active .tab-module {
+    background: $primary-light;
+    color: $primary;
   }
 
   .tab-close {
-    padding: 8px 10px 8px 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    align-self: flex-start;
+    margin: 6px 8px 0 2px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 15px;
+    line-height: 1;
+    color: $gray-400;
+    transition: background $transition-fast, color $transition-fast;
+
+    &:hover {
+      background: $gray-200;
+      color: $gray-900;
+    }
+  }
+
+  button:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: -2px;
+    border-radius: $border-radius-sm;
   }
 }
 

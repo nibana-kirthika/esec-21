@@ -30,7 +30,13 @@
               <div class="tab" [class.active]="tab.tabId === tabService.activeTabId()">
                 <button class="tab-label" type="button" role="tab"
                   [attr.aria-selected]="tab.tabId === tabService.activeTabId()"
-                  (click)="selectTab(tab.tabId)">{{ tab.label }}</button>
+                  [title]="tab.label"
+                  (click)="selectTab(tab.tabId)">
+                  <span class="tab-name">{{ tab.compArgs?.subMenuName || tab.label }}</span>
+                  @if (tab.compArgs?.mainMenuName) {
+                    <span class="tab-module">{{ tab.compArgs.mainMenuName }}</span>
+                  }
+                </button>
                 <button class="tab-close" type="button" [attr.aria-label]="'Close ' + tab.label"
                   (click)="closeTab(tab.tabId)">&times;</button>
               </div>
@@ -38,9 +44,14 @@
           </div>
         }
 
-        @if (activeTab(); as tab) {
-          <app-tab-content [tab]="tab"></app-tab-content>
-        } @else {
+        <!-- all tabs stay alive (hidden when inactive) so each keeps its own state -->
+        @for (tab of tabService.tabs(); track tab.tabId) {
+          <div [hidden]="tab.tabId !== tabService.activeTabId()">
+            <app-tab-content [tab]="tab"></app-tab-content>
+          </div>
+        }
+
+        @if (!activeTab()) {
           <h1>ESEC Workspace</h1>
           <p>Select a module from the sidebar to see its available screens.</p>
         }

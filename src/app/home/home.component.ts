@@ -33,14 +33,17 @@ export class HomeComponent {
     if (allowedMenu) {
       this.selectedMenu.set(allowedMenu);
       this.notice.set('');
-      this.tabService.openTab(
-        new Tab(ReportPageComponent, allowedMenu.mainMenuName + ' / ' + allowedMenu.subMenuName, allowedMenu)
+      // every click adds a new tab; duplicates are independent component instances
+      this.tabService.addTab(
+        new Tab(ReportPageComponent, allowedMenu.mainMenuName + ' / ' + allowedMenu.subMenuName, { ...allowedMenu })
       );
+      console.log('add tab clicked')
     }
   }
 
   selectTab(tabId: number): void {
     this.tabService.activeTabId.set(tabId);
+    console.log('select tab clicked')
   }
 
   closeTab(tabId: number): void {
