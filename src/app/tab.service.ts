@@ -17,16 +17,16 @@ export class TabService{
     private nextTabId = 1;
 
     // OPEN TAB - activates the existing tab with the same title, otherwise adds a new one
-    public openTab(tab: Tab): void {
+    // public openTab(tab: Tab): void {
 
-        const existing = this.tabs().find(t => t.label === tab.title);
+    //     const existing = this.tabs().find(t => t.label === tab.title);
 
-        if (existing) {
-            this.activeTabId.set(existing.tabId);
-        } else {
-            this.addTab(tab);
-        }
-    }
+    //     if (existing) {
+    //         this.activeTabId.set(existing.tabId);
+    //     } else {
+    //         this.addTab(tab);
+    //     }
+    // }
 
     // ADD TAB
     public addTab(tab: Tab): void {
